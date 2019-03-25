@@ -12,27 +12,21 @@ app = Flask(__name__)
 def webhook():
   data = request.get_json()
 
-  send_message("calling parse_message")
-  msg = parse_message(data)
-  send_message("received this message: {}".format(msg))
-  if msg not None:
   # We don't want to reply to ourselves!
-#  if data['name'] != 'Log Reminder Beta':
-#    msg = '{}, you sent "{}".'.format(data['name'], data['text'])
+  if data['name'] != 'Log Reminder Beta':
+    msg = '{}, you sent "{}".'.format(data['name'], data['text'])
     send_message(msg)
 
   return "ok", 200
 
-def parse_message(data):
-  send_message("in parse_message method")
-  # We don't want to reply to ourselves!
-  if data['name'] != 'Log Reminder Beta':
-    send_message("message passes name restriction")
-    msg = '{}, you sent "{}".'.format(data['name'], data['text'])
-    send_message(msg)
-    return msg
-
-  return None
+#def parse_message(data):
+#  # We don't want to reply to ourselves!
+#  if data['name'] != 'Log Reminder Beta':
+#    msg = '{}, you sent "{}".'.format(data['name'], data['text'])
+#    send_message(msg)
+#    return msg
+#
+#  return None
 
 def send_message(msg):
   url  = 'https://api.groupme.com/v3/bots/post'
