@@ -1,6 +1,5 @@
 import os
 import json
-import schedule, time
 
 from urllib.parse import urlencode
 from urllib.request import Request, urlopen
@@ -8,16 +7,6 @@ from urllib.request import Request, urlopen
 from flask import Flask, request
 
 app = Flask(__name__)
-
-# set up timer (assumes Heroku is running this script in a while True)
-schedule.every().monday.at("15:09").do(log_reminder)
-
-schedule.run_pending()
-time.sleep(60) # wait for a minute
-
-def log_reminder(t):
-  msg = 'Reminder to do your weekly logs!'
-  send_message(msg)
 
 # respond to being tagged in chat
 @app.route('/', methods=['POST'])
