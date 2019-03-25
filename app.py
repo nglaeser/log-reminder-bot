@@ -14,8 +14,11 @@ def webhook():
 
   # We don't want to reply to ourselves!
   if data['name'] != 'Log Reminder Beta':
-    msg = '{}, you sent "{}".'.format(data['name'], data['text'])
-    send_message(msg)
+    myname = "@Log Reminder Beta"
+    if myname in data['text']:
+      msg = '{}, you asked for me? I can\'t currently respond to messages yet.'.format(data['name'])
+      # msg = '{}, you sent "{}".'.format(data['name'], data['text'])
+      send_message(msg)
 
   return "ok", 200
 
