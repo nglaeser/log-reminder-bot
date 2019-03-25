@@ -10,7 +10,7 @@ from flask import Flask, request
 app = Flask(__name__)
 
 # set up timer (assumes Heroku is running this script in a while True)
-schedule.every().monday.at("15:07").do(log_reminder)
+schedule.every().monday.at("15:09").do(log_reminder)
 
 schedule.run_pending()
 time.sleep(60) # wait for a minute
@@ -28,7 +28,7 @@ def webhook():
   if data['name'] != 'Log Reminder Beta':
     myname = "@Log Reminder Beta"
     if myname in data['text']:
-      msg = '{}, you asked for me? I can\'t currently respond to messages yet.'.format(data['name'])
+      msg = '{}, you asked for me? Unfortunately I can\'t respond to messages yet.'.format(data['name'])
       # msg = '{}, you sent "{}".'.format(data['name'], data['text'])
       send_message(msg)
 
