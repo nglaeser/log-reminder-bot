@@ -12,11 +12,11 @@ app = Flask(__name__)
 def webhook():
   data = request.get_json()
 
-#  msg = parse_message(data)
-#  if msg not None:
+  msg = parse_message(data)
+  if msg not None:
   # We don't want to reply to ourselves!
-  if data['name'] != 'Log Reminder Beta':
-    msg = '{}, you sent "{}".'.format(data['name'], data['text'])
+#  if data['name'] != 'Log Reminder Beta':
+#    msg = '{}, you sent "{}".'.format(data['name'], data['text'])
     send_message(msg)
 
   return "ok", 200
@@ -25,6 +25,7 @@ def parse_message(data):
   # We don't want to reply to ourselves!
   if data['name'] != 'Log Reminder Beta':
     msg = '{}, you sent "{}".'.format(data['name'], data['text'])
+    send_message(msg)
     return msg
 
   return None
