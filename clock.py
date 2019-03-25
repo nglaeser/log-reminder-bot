@@ -3,7 +3,7 @@ import app
 
 sched = BlockingScheduler()
 
-@sched.scheduled_job('cron', day_of_week='mon', hour=21, minute=31)
+@sched.scheduled_job('cron', day_of_week='mon', hour=19, minute=33)
 def scheduled_job():
   log_reminder()
 
